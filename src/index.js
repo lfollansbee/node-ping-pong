@@ -1,21 +1,21 @@
-let express = require('express');
-let bodyParser = require('body-parser');
-let mongoose = require('mongoose');
-let apiRoutes = require("./api-routes");
+import express from 'express';
+import { urlencoded, json } from 'body-parser';
+import { connect, connection } from 'mongoose';
+import apiRoutes from "./routes/api-routes";
 
 // Initialise the app
 let app = express();
 
 // Configure bodyparser to handle post requests
-app.use(bodyParser.urlencoded({
+app.use(urlencoded({
     extended: true
 }));
-app.use(bodyParser.json());
+app.use(json());
 
 // Connect to Mongoose and set connection variable
-mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true});
+connect('mongodb://localhost/node-crud', { useNewUrlParser: true,  useUnifiedTopology: true});
 
-var db = mongoose.connection;
+var db = connection;
 
 if(!db)
     console.log("Error connecting db")
@@ -29,5 +29,5 @@ app.get('/', (req, res) => res.send('Hello World with Express'));
 app.use('/api', apiRoutes);
 
 app.listen(port, function () {
-    console.log("Running RestHub on port " + port);
+    console.log("Running Node-CRUD on port " + port);
 });
