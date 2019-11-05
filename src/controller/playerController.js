@@ -8,7 +8,7 @@ export const newPlayer = (req, res) => {
     if (err)
       res.json(err);
 
-    res.json({
+    res.status(201).json({
       message: 'New player created!',
       data: player
     });
@@ -26,8 +26,9 @@ export const viewPlayers = (req, res) => {
     }
 
     res.json({
-      status: "success",
+      status: "Success",
       message: "Players retrieved successfully",
+      total: players.length,
       data: players
     });
   });
@@ -47,12 +48,12 @@ export const viewPlayer = (req, res) => {
 
 // DELETE
 export const deletePlayer = (req, res) => {
-  Match.remove({
+  Player.deleteOne({
     _id: req.params.player_id
   }, function (err, player) {
     if (err)
       res.send(err);
-    res.json({
+    res.status(202).json({
       status: 'Success',
       message: 'Player deleted'
     });

@@ -18,7 +18,7 @@ export async function newGame(req, res) {
   return Match.findById(req.params.match_id, function (err, match) {
     if (err)
       res.send(err);
-    res.json({
+    res.status(201).json({
       status: "Success",
       message: "Game submitted successfully",
       data: {

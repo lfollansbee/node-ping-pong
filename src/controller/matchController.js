@@ -18,7 +18,7 @@ export async function newMatch(req, res) {
   return Match.findById(new_match._id, function (err, match) {
     if (err)
       res.send(err);
-    res.json({
+    res.status(201).json({
       status: "Success",
       message: "Match created",
       data: match

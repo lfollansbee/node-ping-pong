@@ -33,7 +33,7 @@ router.route('/games')
 
 router.route('/game/:game_id')
   .get(gameController.viewGame)
-  .put(gameController.editGame)
+  .patch(gameController.editGame)
   .delete(gameController.deleteGame);
 
 router.route('/game/:match_id')
