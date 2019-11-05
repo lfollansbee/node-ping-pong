@@ -11,7 +11,9 @@ export async function newMatch(req, res) {
     date: req.body.date ? req.body.date : undefined,
   }).save();
   // Add match to players' matches array
-  await Player.updateMany({$or: [{_id: req.body.player1_id}, {_id: req.body.player2_id}]}, {$push: {matches: new_match._id}});
+  await Player.updateMany(
+    { $or: [{ _id: req.body.player1_id }, { _id: req.body.player2_id }] }, 
+    { $push: { matches: new_match._id } });
 
   return Match.findById(new_match._id, function (err, match) {
     if (err)
@@ -51,25 +53,34 @@ export function viewMatch(req, res) {
   });
 }
 
-// UPDATE
-export async function updateMatch(match_id) {
-  let match = await Match.findById(match_id);
-  // Add match to players' matches array
+// // UPDATE
+// export async function updateMatch(match_id) {
+//   let new_match = await Match.findById(match_id);
 
-  await Player.updateMany({$or: [{_id: req.body.player1_id}, {_id: req.body.player2_id}]}, {$push: {matches: new_match._id}});
+//   // Add match to players' matches array
+//   await Player.updateMany(
+//     { $or: [{ _id: req.body.player1_id }, { _id: req.body.player2_id }] },
+//     { $push: { matches: new_match._id } });
 
-  return Match.findById(new_match._id, function (err, match) {
-    if (err)
-      res.send(err);
-    res.json({
-      data: match
-    });
-  });
-}
+//   return Match.findById(new_match._id, function (err, match) {
+//     if (err)
+//       res.send(err);
+//     res.json({
+//       data: match
+//     });
+//   });
+// }
 
 // DELETE
-export const deleteMatch = (req, res) => {
-  Match.deleteOne({
+export async function deleteMatch(req, res) {
+  let match = await Match.findById(req.params.match_id);
+
+  // Remove match_id from players' matches array
+  await Player.updateMany(
+    { $or: [{ _id: match.player1_id }, { _id: match.player2_id }] }, 
+    { $pull: { matches: req.params.match_id } });
+
+  return Match.deleteOne({
     _id: req.params.match_id
   }, function (err, match) {
     if (err)

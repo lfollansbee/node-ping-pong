@@ -28,13 +28,3 @@ router.route('/match/:match_id')
   .delete(matchController.deleteMatch);
 
 export default router;
-
-
-
-// Create new match, creates match with 2 player ids and adds match id to players' matches
-// Submit match, adds final game to array, updates winner player "matches_won" property
-// Delete match, deletes match, games in that match, and removes match_id from players' matches array
-
-
-// Create new game, creates game with 2 player ids and adds match id to players' matches
-// Submit game, adds game to matches array

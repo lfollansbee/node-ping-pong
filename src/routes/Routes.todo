@@ -1,0 +1,27 @@
+CRUD Functionalities
+
+Create New Match:
+  ✔ Creates match with 2 player ids @done (11/5/2019, 12:12:00 PM)
+  ✔ Adds match id to players' matches @done (11/5/2019, 12:12:02 PM)
+
+Submit match (when Match is over and no more games will be added):
+  ☐ Adds final game to array
+  ☐ Updates winner player "matches_won" property
+
+Delete match:
+  ✔ Deletes match @done (11/5/2019, 12:10:26 PM)
+  ☐ Deletes games in that match
+  ✔ Removes match_id from players' matches array @done (11/5/2019, 12:10:38 PM)
+
+
+Create new game (there are multiple games in an array, game is created after it has been submitted as finished from UI):
+  ☐ Creates game with 2 player ids
+  ☐ Adds game_id to match's games array
+
+Submit game (when a game is over):
+  ☐ Updates winner player "games_won" property
+
+Delete game:
+  ☐ Deletes game
+  ☐ Removes the game from the match
+  ☐ Decrements winner's games_won property
