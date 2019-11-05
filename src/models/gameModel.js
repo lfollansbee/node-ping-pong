@@ -1,14 +1,20 @@
 import { Schema, model } from 'mongoose';
 
 export const gameSchema = new Schema({
-  player1: {type: Object, ref: 'PlayerSchema'},
-  player2: {type: Object, ref: 'PlayerSchema'},
+  player1_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'Player'
+  },
+  player2_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'Player'
+  },
   player1_score: Number,
   player2_score: Number,
+  match_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'Match'
+  },
 });
 
 export const Game = model('Game', gameSchema);
-
-// export function getGames(callback, limit = null) {
-//   Game.find(callback).limit(limit);
-// }

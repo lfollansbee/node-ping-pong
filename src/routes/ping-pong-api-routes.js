@@ -27,4 +27,13 @@ router.route('/match/:match_id')
   .get(matchController.viewMatch)
   .delete(matchController.deleteMatch);
 
+// router.route('/games')
+//   .get(gameController.viewGames);
+
+// router.route('/game/:game_id')
+//   .get(gameController.viewGame);
+
+router.route('/game/:match_id')
+  .post(gameController.newGame);
+
 export default router;

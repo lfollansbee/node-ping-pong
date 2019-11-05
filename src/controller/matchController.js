@@ -12,13 +12,15 @@ export async function newMatch(req, res) {
   }).save();
   // Add match to players' matches array
   await Player.updateMany(
-    { $or: [{ _id: req.body.player1_id }, { _id: req.body.player2_id }] }, 
+    { $or: [{ _id: req.body.player1_id }, { _id: req.body.player2_id }] },
     { $push: { matches: new_match._id } });
 
   return Match.findById(new_match._id, function (err, match) {
     if (err)
       res.send(err);
     res.json({
+      status: "Success",
+      message: "Match created",
       data: match
     });
   });
@@ -35,9 +37,9 @@ export function viewMatches(req, res) {
     }
 
     res.json({
-      status: "success",
+      status: "Success",
       message: "Matches retrieved successfully",
-      _total: matches.length,
+      total: matches.length,
       data: matches
     });
   });
@@ -53,31 +55,13 @@ export function viewMatch(req, res) {
   });
 }
 
-// // UPDATE
-// export async function updateMatch(match_id) {
-//   let new_match = await Match.findById(match_id);
-
-//   // Add match to players' matches array
-//   await Player.updateMany(
-//     { $or: [{ _id: req.body.player1_id }, { _id: req.body.player2_id }] },
-//     { $push: { matches: new_match._id } });
-
-//   return Match.findById(new_match._id, function (err, match) {
-//     if (err)
-//       res.send(err);
-//     res.json({
-//       data: match
-//     });
-//   });
-// }
-
 // DELETE
 export async function deleteMatch(req, res) {
   let match = await Match.findById(req.params.match_id);
 
   // Remove match_id from players' matches array
   await Player.updateMany(
-    { $or: [{ _id: match.player1_id }, { _id: match.player2_id }] }, 
+    { $or: [{ _id: match.player1_id }, { _id: match.player2_id }] },
     { $pull: { matches: req.params.match_id } });
 
   return Match.deleteOne({
@@ -86,8 +70,8 @@ export async function deleteMatch(req, res) {
     if (err)
       res.send(err);
     res.json({
-      status: "success",
-      message: 'Match deleted'
+      status: "Success",
+      message: "Match deleted"
     });
   });
 };

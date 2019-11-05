@@ -15,11 +15,10 @@ Delete match:
 
 
 Create new game (there are multiple games in an array, game is created after it has been submitted as finished from UI):
-  ☐ Creates game with 2 player ids
-  ☐ Adds game_id to match's games array
-
-Submit game (when a game is over):
-  ☐ Updates winner player "games_won" property
+  ✔ Creates game @done (11/5/2019, 12:40:34 PM)
+  ✔ Adds game_id to match's games array @done (11/5/2019, 1:33:17 PM)
+  ✔ Updates match with games won by each player @done (11/5/2019, 1:33:23 PM)
+  ✘ Updates winner player "games_won" property @cancelled (11/5/2019, 12:46:40 PM)
 
 Delete game:
   ☐ Deletes game
