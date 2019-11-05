@@ -64,6 +64,8 @@ export async function deleteMatch(req, res) {
     { $or: [{ _id: match.player1_id }, { _id: match.player2_id }] },
     { $pull: { matches: req.params.match_id } });
 
+  await Game.deleteMany({match_id: req.params.match_id});
+
   return Match.deleteOne({
     _id: req.params.match_id
   }, function (err, match) {

@@ -10,7 +10,7 @@ Submit match (when Match is over and no more games will be added):
 
 Delete match:
   ✔ Deletes match @done (11/5/2019, 12:10:26 PM)
-  ☐ Deletes games in that match
+  ✔ Deletes games in that match @done (11/5/2019, 1:43:19 PM)
   ✔ Removes match_id from players' matches array @done (11/5/2019, 12:10:38 PM)
 
 

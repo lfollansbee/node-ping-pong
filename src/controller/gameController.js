@@ -35,3 +35,32 @@ export async function newGame(req, res) {
   });
 
 };
+
+// READ
+export function viewGames(req, res) {
+  Game.find(function (err, games) {
+    if (err) {
+      res.json({
+        status: "Error",
+        message: err,
+      });
+    }
+
+    res.json({
+      status: "Success",
+      message: "Games retrieved successfully",
+      total: games.length,
+      data: games
+    });
+  });
+}
+
+export function viewGame(req, res) {
+  Game.findById(req.params.game_id, function (err, game) {
+    if (err)
+      res.send(err);
+    res.json({
+      data: game
+    });
+  });
+}

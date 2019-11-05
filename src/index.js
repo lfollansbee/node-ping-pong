@@ -1,7 +1,6 @@
 import express from 'express';
 import { urlencoded, json } from 'body-parser';
 import { connect, connection } from 'mongoose';
-import contactApiRoutes from "./routes/contact-api-routes";
 import pingPongApiRoutes from "./routes/ping-pong-api-routes";
 
 // Initialise the app
@@ -27,7 +26,6 @@ var port = process.env.PORT || 8080;
 app.get('/', (req, res) => res.send('Hello World with Express'));
 
 // Use Api routes in the App
-app.use('/api', contactApiRoutes);
 app.use('/ping-pong', pingPongApiRoutes);
 
 app.listen(port, function () {
