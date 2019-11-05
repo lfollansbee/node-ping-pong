@@ -13,16 +13,7 @@ export async function newGame(req, res) {
   }).save();
 
   const winner = req.body.player1_score > req.body.player2_score ? { player1_games_won: 1 } : { player2_games_won: 1 };
-
-  await Match.findOneAndUpdate({ _id: req.params.match_id },
-    { $push: { games: game._id }, $inc: winner }
-  );
-
-  // let p1_record = req.body.player1_score > req.body.player2_score ? { games_won: 1 } : { games_lost: 1 };
-  // let p2_record = req.body.player2_score > req.body.player1_score ? { games_won: 1 } : { games_lost: 1 };
-
-  // await Player.findOneAndUpdate({ _id: req.body.player1_id }, { $inc: p1_record });
-  // await Player.findOneAndUpdate({ _id: req.body.player2_id }, { $inc: p2_record });
+  await Match.findByIdAndUpdate(req.params.match_id, { $push: { games: game._id }, $inc: winner });
 
   return Match.findById(req.params.match_id, function (err, match) {
     if (err)
@@ -71,7 +62,17 @@ export function viewGame(req, res) {
 
 // UPDATE
 export async function editGame(req, res) {
-  let game = await Game.findById(req.params.game_id);
+  let game
+  try {
+    game = await Game.findById(req.params.game_id); // err if game isn't found
+  } catch (err) {
+    res.json({
+      status: 404,
+      message: `No Game Found with game_id ${req.params.game_id}.`,
+      error: err
+    })
+  }
+
   let match_id = game.match_id;
 
   if (game.player1_score !== req.body.player1_score || game.player2_score !== req.body.player2_score) {
@@ -80,7 +81,7 @@ export async function editGame(req, res) {
 
     // Update the score
     let game_update = { $set: { player1_score: req.body.player1_score, player2_score: req.body.player2_score, } }
-    await Game.findByIdAndUpdate(req.params.game_id, game_update)
+    await Game.findByIdAndUpdate(req.params.game_id, game_update, { new: true })
 
     // If the winner has changed
     if (original_winner !== current_winner) {
@@ -88,9 +89,11 @@ export async function editGame(req, res) {
       // If p1 is current winner, increment their games won and decrement p2's games won & vice versa
       const updateMatch = current_winner === 1 ?
         { player1_games_won: 1, player2_games_won: -1 } : { player2_games_won: 1, player1_games_won: -1 }
-      await Match.findOneAndUpdate({ _id: match_id }, { $inc: updateMatch });
+      await Match.findOneAndUpdate({ _id: match_id }, { $inc: updateMatch }, { new: true });
     }
   }
+
+  game = await Game.findById(req.params.game_id);
 
   return Match.findById(match_id, function (err, match) {
     if (err)
@@ -103,6 +106,29 @@ export async function editGame(req, res) {
         player1_games_won: match.player1_games_won,
         player2_games_won: match.player2_games_won,
       }
+    });
+  });
+};
+
+// DELETE
+export async function deleteGame(req, res) {
+  const game_id = req.params.game_id;
+  let game = await Game.findById(game_id);
+
+  const match_score_update = game.player1_score > game.player2_score ? { player1_games_won: -1 } : { player2_games_won: -1 };
+
+  // Remove game_id from match's games array
+  await Match.findByIdAndUpdate(game.match_id,
+    { $pull: { games: game_id }, $inc: match_score_update });
+
+  return Game.deleteOne({
+    _id: game_id
+  }, function (err, game) {
+    if (err)
+      res.send(err);
+    res.json({
+      status: "Success",
+      message: "Game deleted"
     });
   });
 };

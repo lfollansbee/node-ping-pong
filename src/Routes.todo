@@ -28,6 +28,7 @@ Update a game (if the score was wrong or something):
     ✘ Update the players' game records @cancelled (11/5/2019, 3:05:30 PM)
 
 Delete game:
-  ☐ Deletes game
-  ☐ Removes the game from the match
+  ✔ Removes the game from its match @done (11/5/2019, 3:24:25 PM)
+  ✔ Deletes game @done (11/5/2019, 3:24:26 PM)
+  ✔ Update match score @done (11/5/2019, 3:24:27 PM)
   ✘ Decrements winner's games_won property @cancelled (11/5/2019, 3:05:43 PM)
