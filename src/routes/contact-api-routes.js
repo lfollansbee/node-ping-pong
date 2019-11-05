@@ -1,4 +1,4 @@
-import * as contactController from './../contactController';
+import * as contactController from '../controller/contactController';
 import express from 'express';
 let router = express.Router();
 

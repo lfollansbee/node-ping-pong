@@ -1,4 +1,4 @@
-import { Contact, getContacts } from './models/contactModel';
+import { Contact, getContacts } from '../models/contactModel';
 
 // Handle index actions
 export function index(req, res) {
@@ -9,6 +9,7 @@ export function index(req, res) {
         message: err,
       });
     }
+
     res.json({
       status: "success",
       message: "Contacts retrieved successfully",
@@ -25,9 +26,10 @@ const _new = function (req, res) {
   contact.email = req.body.email;
   contact.phone = req.body.phone;
   // save the contact and check for errors
-  contact.save(function (err) {
-    // if (err)
-    //     res.json(err);
+  contact.save((err) => {
+    if (err)
+      res.json(err);
+
     res.json({
       message: 'New contact created!',
       data: contact

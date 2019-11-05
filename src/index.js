@@ -1,7 +1,8 @@
 import express from 'express';
 import { urlencoded, json } from 'body-parser';
 import { connect, connection } from 'mongoose';
-import apiRoutes from "./routes/api-routes";
+import contactApiRoutes from "./routes/contact-api-routes";
+import pingPongApiRoutes from "./routes/ping-pong-api-routes";
 
 // Initialise the app
 let app = express();
@@ -26,7 +27,8 @@ var port = process.env.PORT || 8080;
 app.get('/', (req, res) => res.send('Hello World with Express'));
 
 // Use Api routes in the App
-app.use('/api', apiRoutes);
+app.use('/api', contactApiRoutes);
+app.use('/ping-pong', pingPongApiRoutes);
 
 app.listen(port, function () {
     console.log("Running Node-CRUD on port " + port);
