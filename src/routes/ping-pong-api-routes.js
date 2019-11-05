@@ -25,6 +25,7 @@ router.route('/matches')
 
 router.route('/match/:match_id')
   .get(matchController.viewMatch)
+  .patch(matchController.endMatch)
   .delete(matchController.deleteMatch);
 
 router.route('/games')

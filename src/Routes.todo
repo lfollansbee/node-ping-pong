@@ -5,8 +5,7 @@ Create New Match:
   ✔ Adds match id to players' matches @done (11/5/2019, 12:12:02 PM)
 
 Submit match (when Match is over and no more games will be added):
-  ☐ Adds final game to array
-  ☐ Updates winner player "matches_won" property
+  ✔ Updates winner player "matches_won" property @done (11/5/2019, 3:54:59 PM)
 
 Delete match:
   ✔ Deletes match @done (11/5/2019, 12:10:26 PM)

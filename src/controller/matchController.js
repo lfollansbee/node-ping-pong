@@ -55,6 +55,23 @@ export function viewMatch(req, res) {
   });
 }
 
+// UPDATE
+export async function endMatch(req, res) {
+  let match = await Match.findById(req.params.match_id);
+
+  let winner_id = match.player1_games_won > match.player2_games_won ? match.player1_id : match.player2_id;
+  return Player.findByIdAndUpdate(winner_id, { $inc: { matches_won: 1 } }, function (err, player) {
+    if (err)
+      res.send(err);
+    res.json({
+      status: "Success",
+      message: "Match completed",
+      winner: player,
+      match: match
+    });
+  });
+};
+
 // DELETE
 export async function deleteMatch(req, res) {
   let match = await Match.findById(req.params.match_id);
@@ -64,7 +81,7 @@ export async function deleteMatch(req, res) {
     { $or: [{ _id: match.player1_id }, { _id: match.player2_id }] },
     { $pull: { matches: req.params.match_id } });
 
-  await Game.deleteMany({match_id: req.params.match_id});
+  await Game.deleteMany({ match_id: req.params.match_id });
 
   return Match.deleteOne({
     _id: req.params.match_id
