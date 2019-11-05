@@ -18,9 +18,16 @@ Create new game (there are multiple games in an array, game is created after it 
   ✔ Creates game @done (11/5/2019, 12:40:34 PM)
   ✔ Adds game_id to match's games array @done (11/5/2019, 1:33:17 PM)
   ✔ Updates match with games won by each player @done (11/5/2019, 1:33:23 PM)
-  ✔ Updates winner player "games_won" property @done (11/5/2019, 1:59:28 PM)
+  ✘ Updates winner player "games_won" property @cancelled (11/5/2019, 3:05:23 PM)
+
+Update a game (if the score was wrong or something):
+  ✔ Check if the scores have changed @done (11/5/2019, 2:49:06 PM)
+  ✔ If scores have changed, update the scores for each player @done (11/5/2019, 2:55:13 PM)
+  If the winner has changed:
+    ✔ Update the match score, player1_games_won & player2_games_won @done (11/5/2019, 2:55:06 PM)
+    ✘ Update the players' game records @cancelled (11/5/2019, 3:05:30 PM)
 
 Delete game:
   ☐ Deletes game
   ☐ Removes the game from the match
-  ☐ Decrements winner's games_won property
+  ✘ Decrements winner's games_won property @cancelled (11/5/2019, 3:05:43 PM)

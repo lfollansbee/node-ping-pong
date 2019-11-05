@@ -31,7 +31,8 @@ router.route('/games')
   .get(gameController.viewGames);
 
 router.route('/game/:game_id')
-  .get(gameController.viewGame);
+  .get(gameController.viewGame)
+  .put(gameController.editGame);
 
 router.route('/game/:match_id')
   .post(gameController.newGame);
