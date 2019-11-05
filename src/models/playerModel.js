@@ -9,8 +9,8 @@ export const playerSchema = new Schema({
     // matches_lost: Number,
     // consecutive_wins: Number,
     // consecutive_losses: Number,
-    // games_won: Number,
-    // games_lost: Number,
+    games_won: Number,
+    games_lost: Number,
     matches: [{
         type: Schema.Types.ObjectId,
         ref: 'Match'

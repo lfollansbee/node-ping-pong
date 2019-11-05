@@ -1,7 +1,6 @@
 import { Player } from '../models/playerModel';
 import { Match } from '../models/matchModel';
 import { Game } from '../models/gameModel';
-import updateMatch from './matchController';
 
 // CREATE
 export async function newGame(req, res) {
@@ -18,6 +17,12 @@ export async function newGame(req, res) {
   await Match.findOneAndUpdate({ _id: req.params.match_id },
     { $push: { games: game._id }, $inc: winner }
   );
+
+  let p1_result = req.body.player1_score > req.body.player2_score ? { games_won: 1 } : { games_lost: 1 }
+  let p2_result = req.body.player2_score > req.body.player1_score ? { games_won: 1 } : { games_lost: 1 }
+
+  await Player.findOneAndUpdate({ _id: req.body.player1_id }, { $inc: p1_result })
+  await Player.findOneAndUpdate({ _id: req.body.player2_id }, { $inc: p2_result })
 
   return Match.findById(req.params.match_id, function (err, match) {
     if (err)
