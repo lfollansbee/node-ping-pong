@@ -3,7 +3,8 @@ import { Schema, model } from 'mongoose';
 export const playerSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        uppercase: true,
     },
     matches_won: { type: Number, required: true, default: 0, min: 0 },
     // matches_lost: Number,
@@ -13,7 +14,7 @@ export const playerSchema = new Schema({
     // games_lost: Number,
     matches: [{
         type: Schema.Types.ObjectId,
-        ref: 'Match'
+        ref: 'Match',
     }],
 });
 

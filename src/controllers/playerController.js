@@ -10,7 +10,7 @@ export const newPlayer = (req, res) => {
 
     res.status(201).json({
       message: 'New player created!',
-      data: player
+      data: player,
     });
   });
 };
@@ -20,42 +20,42 @@ export const viewPlayers = (req, res) => {
   Player.find(function (err, players) {
     if (err) {
       res.json({
-        status: "error",
+        status: 'error',
         message: err,
       });
     }
 
     res.json({
-      status: "Success",
-      message: "Players retrieved successfully",
+      status: 'Success',
+      message: 'Players retrieved successfully',
       total: players.length,
-      data: players
+      data: players,
     });
   });
-}
+};
 
 export const viewPlayer = (req, res) => {
   Player.findById(req.params.player_id, function (err, player) {
     if (err)
       res.send(err);
     res.json({
-      data: player
+      data: player,
     });
   });
-}
+};
 
 // UPDATE
 
 // DELETE
 export const deletePlayer = (req, res) => {
   Player.deleteOne({
-    _id: req.params.player_id
-  }, function (err, player) {
+    _id: req.params.player_id,
+  }, function (err) {
     if (err)
       res.send(err);
     res.status(202).json({
       status: 'Success',
-      message: 'Player deleted'
+      message: 'Player deleted',
     });
   });
 };

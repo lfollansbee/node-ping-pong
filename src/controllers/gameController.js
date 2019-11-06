@@ -18,33 +18,33 @@ export async function newGame(req, res) {
     if (err)
       res.send(err);
     res.status(201).json({
-      status: "Success",
-      message: "Game submitted successfully",
+      status: 'Success',
+      message: 'Game submitted successfully',
       data: {
         game: game,
         best_of: match.best_of,
         player1_games_won: match.player1_games_won,
         player2_games_won: match.player2_games_won,
-      }
+      },
     });
   });
-};
+}
 
 // READ
 export function viewGames(req, res) {
   Game.find(function (err, games) {
     if (err) {
       res.json({
-        status: "Error",
+        status: 'Error',
         message: err,
       });
     }
 
     res.json({
-      status: "Success",
-      message: "Games retrieved successfully",
+      status: 'Success',
+      message: 'Games retrieved successfully',
       total: games.length,
-      data: games
+      data: games,
     });
   });
 }
@@ -54,22 +54,22 @@ export function viewGame(req, res) {
     if (err)
       res.send(err);
     res.json({
-      data: game
+      data: game,
     });
   });
 }
 
 // UPDATE
 export async function editGame(req, res) {
-  let game
+  let game;
   try {
     game = await Game.findById(req.params.game_id); // err if game isn't found
   } catch (err) {
     res.json({
       status: 404,
       message: `No Game Found with game_id ${req.params.game_id}.`,
-      error: err
-    })
+      error: err,
+    });
   }
 
   let match_id = game.match_id;
@@ -79,35 +79,35 @@ export async function editGame(req, res) {
     let current_winner = req.body.player1_score > req.body.player2_score ? 1 : 2;
 
     // Update the score
-    let game_update = { $set: { player1_score: req.body.player1_score, player2_score: req.body.player2_score, } }
-    await Game.findByIdAndUpdate(req.params.game_id, game_update, { new: true })
+    let game_update = { $set: { player1_score: req.body.player1_score, player2_score: req.body.player2_score } };
+    await Game.findByIdAndUpdate(req.params.game_id, game_update, { new: true });
 
     // If the winner has changed
     if (original_winner !== current_winner) {
       // Update the match score
       // If p1 is current winner, increment their games won and decrement p2's games won & vice versa
       const updateMatch = current_winner === 1 ?
-        { player1_games_won: 1, player2_games_won: -1 } : { player2_games_won: 1, player1_games_won: -1 }
+        { player1_games_won: 1, player2_games_won: -1 } : { player2_games_won: 1, player1_games_won: -1 };
       await Match.findOneAndUpdate({ _id: match_id }, { $inc: updateMatch }, { new: true });
     }
   }
 
-  game = await Game.findById(req.params.game_id);
+  const updated_game = await Game.findById(req.params.game_id);
 
   return Match.findById(match_id, function (err, match) {
     if (err)
       res.send(err);
     res.json({
-      status: "Success",
-      message: "Game updated successfully",
+      status: 'Success',
+      message: 'Game updated successfully',
       data: {
-        game: game,
+        game: updated_game,
         player1_games_won: match.player1_games_won,
         player2_games_won: match.player2_games_won,
-      }
+      },
     });
   });
-};
+}
 
 // DELETE
 export async function deleteGame(req, res) {
@@ -121,13 +121,13 @@ export async function deleteGame(req, res) {
     { $pull: { games: game_id }, $inc: match_score_update });
 
   return Game.deleteOne({
-    _id: game_id
-  }, function (err, game) {
+    _id: game_id,
+  }, function (err) {
     if (err)
       res.send(err);
     res.json({
-      status: "Success",
-      message: "Game deleted"
+      status: 'Success',
+      message: 'Game deleted',
     });
   });
-};
+}

@@ -19,9 +19,9 @@ export async function newMatch(req, res) {
     if (err)
       res.send(err);
     res.status(201).json({
-      status: "Success",
-      message: "Match created",
-      data: match
+      status: 'Success',
+      message: 'Match created',
+      data: match,
     });
   });
 }
@@ -31,16 +31,16 @@ export function viewMatches(req, res) {
   Match.find(function (err, matches) {
     if (err) {
       res.json({
-        status: "error",
+        status: 'error',
         message: err,
       });
     }
 
     res.json({
-      status: "Success",
-      message: "Matches retrieved successfully",
+      status: 'Success',
+      message: 'Matches retrieved successfully',
       total: matches.length,
-      data: matches
+      data: matches,
     });
   });
 }
@@ -50,7 +50,7 @@ export function viewMatch(req, res) {
     if (err)
       res.send(err);
     res.json({
-      data: match
+      data: match,
     });
   });
 }
@@ -64,13 +64,13 @@ export async function endMatch(req, res) {
     if (err)
       res.send(err);
     res.json({
-      status: "Success",
-      message: "Match completed",
+      status: 'Success',
+      message: 'Match completed',
       winner: player,
-      match: match
+      match: match,
     });
   });
-};
+}
 
 // DELETE
 export async function deleteMatch(req, res) {
@@ -84,13 +84,13 @@ export async function deleteMatch(req, res) {
   await Game.deleteMany({ match_id: req.params.match_id });
 
   return Match.deleteOne({
-    _id: req.params.match_id
-  }, function (err, match) {
+    _id: req.params.match_id,
+  }, function (err) {
     if (err)
       res.send(err);
     res.json({
-      status: "Success",
-      message: "Match deleted"
+      status: 'Success',
+      message: 'Match deleted',
     });
   });
-};
+}

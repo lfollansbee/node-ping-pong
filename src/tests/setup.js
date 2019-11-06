@@ -29,7 +29,7 @@ beforeEach(function(done) {
           throw err;
         }
         return clearDB();
-      }
+      },
     );
   } else {
     return clearDB();
