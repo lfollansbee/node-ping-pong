@@ -1,6 +1,6 @@
-import * as playerController from '../controller/playerController';
-import * as matchController from '../controller/matchController';
-import * as gameController from '../controller/gameController';
+import * as playerController from '../controllers/playerController';
+import * as matchController from '../controllers/matchController';
+import * as gameController from '../controllers/gameController';
 import express from 'express';
 let router = express.Router();
 
