@@ -1,16 +1,18 @@
 import { Schema, model } from 'mongoose';
 
 export const gameSchema = new Schema({
-  player1_id: {
-    type: Schema.Types.ObjectId,
-    ref: 'Player',
+  player1_score: {
+    type: Number,
+    required: true,
+    default: 0,
+    min: 0,
   },
-  player2_id: {
-    type: Schema.Types.ObjectId,
-    ref: 'Player',
+  player2_score: {
+    type: Number,
+    required: true,
+    default: 0,
+    min: 0,
   },
-  player1_score: Number,
-  player2_score: Number,
   match_id: {
     type: Schema.Types.ObjectId,
     ref: 'Match',

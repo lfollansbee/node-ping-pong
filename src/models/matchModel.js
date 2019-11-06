@@ -9,9 +9,22 @@ export const matchSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Player',
     },
-    player1_games_won: { type: Number, required: true, default: 0, min: 0 },
-    player2_games_won: { type: Number, required: true, default: 0, min: 0 },
-    best_of: {type: Number, default: 3},
+    player1_games_won: {
+        type: Number,
+        required: true,
+        default: 0,
+        min: 0,
+    },
+    player2_games_won: {
+        type: Number,
+        required: true,
+        default: 0,
+        min: 0,
+    },
+    best_of: {
+        type: Number,
+        default: 3,
+    },
     games: [{
         type: Schema.Types.ObjectId,
         ref: 'Game',

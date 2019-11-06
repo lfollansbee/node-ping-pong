@@ -4,8 +4,6 @@ import { Game } from '../models/gameModel';
 // CREATE
 export async function newGame(req, res) {
   let game = await new Game({
-    player1_id: req.body.player1_id,
-    player2_id: req.body.player2_id,
     player1_score: req.body.player1_score,
     player2_score: req.body.player2_score,
     match_id: req.params.match_id,
