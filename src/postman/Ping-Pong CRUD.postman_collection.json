@@ -1,0 +1,503 @@
+{
+	"info": {
+		"_postman_id": "00ea2c2c-36dc-4bfa-956d-b986dbe28b28",
+		"name": "Ping-Pong CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Players",
+			"item": [
+				{
+					"name": "Get a Player",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/player/:player_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"player",
+								":player_id"
+							],
+							"variable": [
+								{
+									"key": "player_id",
+									"value": "{{Lucy_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Players",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/players",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"players"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Player",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"lucy\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/players",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"players"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Player",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/player/:player_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"player",
+								":player_id"
+							],
+							"variable": [
+								{
+									"key": "player_id",
+									"value": "{{Ryan_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Matches",
+			"item": [
+				{
+					"name": "Create a Match",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"player1_id\": \"5dc34e7b2cc5d6649092c596\",\n\t\"player2_id\": \"5dc34e6f2cc5d6649092c595\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/matches",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"matches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Matches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/matches",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"matches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Match",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/match/:match_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"match",
+								":match_id"
+							],
+							"variable": [
+								{
+									"key": "match_id",
+									"value": "5dc34eaa2cc5d6649092c597"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "End Match",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/match/:match_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"match",
+								":match_id"
+							],
+							"variable": [
+								{
+									"key": "match_id",
+									"value": "5dc1f93e209b8a2bcdfd4089"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Match",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/match/:match_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"match",
+								":match_id"
+							],
+							"variable": [
+								{
+									"key": "match_id",
+									"value": "5dc1dcb7993b50090fe60498"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Games",
+			"item": [
+				{
+					"name": "Create/Submit Game",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"player1_score\": 21,\n    \"player2_score\": 19\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/game/:match_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"game",
+								":match_id"
+							],
+							"variable": [
+								{
+									"key": "match_id",
+									"value": "5dc34eaa2cc5d6649092c597"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Games",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/games",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Game",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/game/:game_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"game",
+								":game_id"
+							],
+							"variable": [
+								{
+									"key": "game_id",
+									"value": "5dc1f94a209b8a2bcdfd408a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a Game",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"player1_id\": \"5dc1ff2c5338a53295841baf\",\n\t\"player2_id\": \"5dc1ff395338a53295841bb0\",\n    \"player1_score\": 22,\n    \"player2_score\": 21\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/game/:game_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"game",
+								":game_id"
+							],
+							"variable": [
+								{
+									"key": "game_id",
+									"value": "5dc1f94a209b8a2bcdfd408a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Game",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/ping-pong/game/:game_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ping-pong",
+								"game",
+								":game_id"
+							],
+							"variable": [
+								{
+									"key": "game_id",
+									"value": "5dc1f6f9f578f92adf032a99"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6ede51e9-d108-4c96-ab14-ca245b5025dc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fcadd8f3-5398-4bec-86d3-d6a960f05360",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b9ebaffc-9af3-4e56-a6c0-11770ce7bd09",
+			"key": "Lucy_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "9fa7fc14-d7ad-419a-9692-2f8a8685067f",
+			"key": "Ryan_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "5ff238b4-94c2-44db-94f9-4bb0cd4d5a40",
+			"key": "Paulo_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
