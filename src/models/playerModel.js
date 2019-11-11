@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose';
 export const playerSchema = new Schema({
     name: {
         type: String,
-        required: true,
+        require: 'Please enter a name',
         uppercase: true,
     },
     matches_won: { type: Number, required: true, default: 0, min: 0 },

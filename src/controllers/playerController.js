@@ -9,6 +9,7 @@ export const newPlayer = (req, res) => {
       res.json(err);
 
     res.status(201).json({
+      status: 'Success',
       message: 'New player created!',
       data: player,
     });
@@ -28,7 +29,7 @@ export const viewPlayers = (req, res) => {
     res.json({
       status: 'Success',
       message: 'Players retrieved successfully',
-      total: players.length,
+      total: players && players.length ? players.length : 0,
       data: players,
     });
   });
@@ -39,12 +40,11 @@ export const viewPlayer = (req, res) => {
     if (err)
       res.send(err);
     res.json({
+      status: 'Success',
       data: player,
     });
   });
 };
-
-// UPDATE
 
 // DELETE
 export const deletePlayer = (req, res) => {

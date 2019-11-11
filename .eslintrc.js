@@ -17,7 +17,8 @@ module.exports = {
         "comma-dangle": ["warn", "always-multiline"],
         "comma-spacing": ["warn", {"before": false, "after": true}],
         "global-require": "error",
-        "quotes": ["error", "single"],
-        "semi": ["error", "always"],
+        "no-unused-vars": 1,
+        "quotes": ["warn", "single"],
+        "semi": ["warn", "always"],
     }
 };

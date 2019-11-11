@@ -4,11 +4,15 @@
   "description": "Node CRUD project for SMART Goals",
   "main": "index.js",
   "jest": {
-    "setupTestFrameworkScriptFile": "./src/tests/setup.js"
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/tests/test-setup.js"
+    ]
   },
   "scripts": {
     "test": "jest",
-    "start": "nodemon --exec babel-node src/index.js",
+    "test:watch": "jest --watch",
+    "start": "nodemon --exec babel-node src/start.js",
     "lint": "./node_modules/.bin/eslint ./src/",
     "lint-fix": "./node_modules/.bin/eslint ./src/ --fix"
   },
@@ -26,6 +30,9 @@
     "@babel/core": "^7.6.4",
     "@babel/node": "^7.6.3",
     "@babel/preset-env": "^7.6.3",
-    "eslint": "^6.6.0"
+    "core-js": "^3.3.6",
+    "eslint": "^6.6.0",
+    "regenerator-runtime": "^0.13.3",
+    "supertest": "^4.0.2"
   }
 }
