@@ -15,4 +15,4 @@ else
     console.log('Db connected successfully');
 
 // Connect to Mongoose and set connection variable
-connect('mongodb://localhost/ping-pong', { useNewUrlParser: true, useUnifiedTopology: true });
+connect('mongodb://localhost/ping-pong', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });

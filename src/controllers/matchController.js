@@ -39,7 +39,7 @@ export function viewMatches(req, res) {
     res.json({
       status: 'Success',
       message: 'Matches retrieved successfully',
-      total: matches.length,
+      total: matches && matches.length ? matches.length : 0,
       data: matches,
     });
   });
@@ -50,6 +50,7 @@ export function viewMatch(req, res) {
     if (err)
       res.send(err);
     res.json({
+      status: 'Success',
       data: match,
     });
   });
@@ -60,14 +61,16 @@ export async function endMatch(req, res) {
   let match = await Match.findById(req.params.match_id);
 
   let winner_id = match.player1_games_won > match.player2_games_won ? match.player1_id : match.player2_id;
-  return Player.findByIdAndUpdate(winner_id, { $inc: { matches_won: 1 } }, function (err, player) {
+  let player = await Player.findByIdAndUpdate(winner_id, { $inc: { matches_won: 1 } }, { new: true });
+
+  return Match.findById(req.params.match_id, function (err, newMatch) {
     if (err)
       res.send(err);
     res.json({
       status: 'Success',
       message: 'Match completed',
       winner: player,
-      match: match,
+      match: newMatch,
     });
   });
 }

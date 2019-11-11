@@ -1,9 +1,10 @@
 import app from '../../index';
 import supertest from 'supertest';
-const request = supertest(app);
 import {setupDB} from '../test-setup';
+import { Player } from '../../models/playerModel';
+const request = supertest(app);
 
-setupDB('endpoint-testing');
+setupDB('player-testing');
 
 describe('Player Controller', () => {
   it('Gets all the players', async done => {
@@ -44,16 +45,16 @@ describe('Player Controller', () => {
   });
 
   it('Deletes a player', async done => {
-    const getRes = await request.get('/ping-pong/players').send();
-    expect(getRes.body.total).toEqual(4);
+    const players = await Player.find();
+    expect(players.length).toEqual(4);
 
     const res = await request.delete('/ping-pong/player/5dc34a8fa8eb86605600a0f1').send();
 
     expect(res.body.status).toEqual('Success');
     expect(res.body.message).toEqual('Player deleted');
 
-    const getRes2 = await request.get('/ping-pong/players').send();
-    expect(getRes2.body.total).toEqual(3);
+    const updated_players = await Player.find();
+    expect(updated_players.length).toEqual(3);
 
     done();
   });

@@ -30,8 +30,8 @@ export default [
     __v: 0,
   },
   {
-    player1_games_won: 0,
-    player2_games_won: 0,
+    player1_games_won: 2,
+    player2_games_won: 1,
     best_of: 3,
     games: [
       '5dc34f76499d816612f8dab1',

@@ -1,7 +1,7 @@
 // global beforeAll beforeEach afterEach afterAll
 import 'regenerator-runtime/runtime';
 import { seedDatabase } from '../seeds';
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 mongoose.set('useCreateIndex', true);
 mongoose.promise = global.Promise;
 

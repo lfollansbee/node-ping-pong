@@ -11,13 +11,13 @@ export const matchSchema = new Schema({
     },
     player1_games_won: {
         type: Number,
-        required: true,
+        require: true,
         default: 0,
         min: 0,
     },
     player2_games_won: {
         type: Number,
-        required: true,
+        require: true,
         default: 0,
         min: 0,
     },

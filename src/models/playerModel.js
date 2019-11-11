@@ -6,7 +6,7 @@ export const playerSchema = new Schema({
         require: 'Please enter a name',
         uppercase: true,
     },
-    matches_won: { type: Number, required: true, default: 0, min: 0 },
+    matches_won: { type: Number, require: true, default: 0, min: 0 },
     // matches_lost: Number,
     // consecutive_wins: Number,
     // consecutive_losses: Number,
