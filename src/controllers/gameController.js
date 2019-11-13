@@ -20,7 +20,6 @@ export async function newGame(req, res) {
       message: 'Game submitted successfully',
       data: {
         game: game,
-        best_of: match.best_of,
         player1_games_won: match.player1_games_won,
         player2_games_won: match.player2_games_won,
       },
@@ -52,6 +51,7 @@ export function viewGame(req, res) {
     if (err)
       res.send(err);
     res.json({
+      status: 'Success',
       data: game,
     });
   });
@@ -61,16 +61,17 @@ export function viewGame(req, res) {
 export async function editGame(req, res) {
   let game;
   try {
-    game = await Game.findById(req.params.game_id); // err if game isn't found
+    game = await Game.findById(req.params.game_id);
   } catch (err) {
-    res.json({
+    return res.json({
       status: 404,
-      message: `No Game Found with game_id ${req.params.game_id}.`,
+      message: `No Game found with game_id: ${req.params.game_id}`,
       error: err,
     });
   }
 
   let match_id = game.match_id;
+  let updated_game;
 
   if (game.player1_score !== req.body.player1_score || game.player2_score !== req.body.player2_score) {
     let original_winner = game.player1_score > game.player2_score ? 1 : 2;
@@ -78,19 +79,18 @@ export async function editGame(req, res) {
 
     // Update the score
     let game_update = { $set: { player1_score: req.body.player1_score, player2_score: req.body.player2_score } };
-    await Game.findByIdAndUpdate(req.params.game_id, game_update, { new: true });
+    updated_game = await Game.findByIdAndUpdate(req.params.game_id, game_update, { new: true });
 
     // If the winner has changed
     if (original_winner !== current_winner) {
       // Update the match score
       // If p1 is current winner, increment their games won and decrement p2's games won & vice versa
-      const updateMatch = current_winner === 1 ?
+      const match_update = current_winner === 1 ?
         { player1_games_won: 1, player2_games_won: -1 } : { player2_games_won: 1, player1_games_won: -1 };
-      await Match.findOneAndUpdate({ _id: match_id }, { $inc: updateMatch }, { new: true });
+
+      await Match.findOneAndUpdate({ _id: match_id }, { $inc: match_update }, { new: true });
     }
   }
-
-  const updated_game = await Game.findById(req.params.game_id);
 
   return Match.findById(match_id, function (err, match) {
     if (err)
@@ -99,7 +99,7 @@ export async function editGame(req, res) {
       status: 'Success',
       message: 'Game updated successfully',
       data: {
-        game: updated_game,
+        game: updated_game || game,
         player1_games_won: match.player1_games_won,
         player2_games_won: match.player2_games_won,
       },
