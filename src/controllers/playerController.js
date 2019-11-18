@@ -11,7 +11,7 @@ export const newPlayer = (req, res) => {
     res.status(201).json({
       status: 'Success',
       message: 'New player created!',
-      data: player,
+      player,
     });
   });
 };
@@ -30,9 +30,9 @@ export const viewPlayers = (req, res) => {
       status: 'Success',
       message: 'Players retrieved successfully',
       total: players && players.length ? players.length : 0,
-      data: players,
+      players,
     });
-  });
+  }).sort({matches_won: -1});
 };
 
 export const viewPlayer = (req, res) => {
@@ -41,7 +41,7 @@ export const viewPlayer = (req, res) => {
       res.send(err);
     res.json({
       status: 'Success',
-      data: player,
+      player,
     });
   });
 };

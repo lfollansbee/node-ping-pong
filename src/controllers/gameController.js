@@ -41,7 +41,7 @@ export function viewGames(req, res) {
       status: 'Success',
       message: 'Games retrieved successfully',
       total: games.length,
-      data: games,
+      games,
     });
   });
 }
@@ -52,7 +52,7 @@ export function viewGame(req, res) {
       res.send(err);
     res.json({
       status: 'Success',
-      data: game,
+      game,
     });
   });
 }
@@ -98,11 +98,9 @@ export async function editGame(req, res) {
     res.json({
       status: 'Success',
       message: 'Game updated successfully',
-      data: {
-        game: updated_game || game,
-        player1_games_won: match.player1_games_won,
-        player2_games_won: match.player2_games_won,
-      },
+      game: updated_game || game,
+      player1_games_won: match.player1_games_won,
+      player2_games_won: match.player2_games_won,
     });
   });
 }

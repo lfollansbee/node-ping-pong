@@ -21,7 +21,7 @@ export async function newMatch(req, res) {
     res.status(201).json({
       status: 'Success',
       message: 'Match created',
-      data: match,
+      match,
     });
   });
 }
@@ -40,7 +40,7 @@ export function viewMatches(req, res) {
       status: 'Success',
       message: 'Matches retrieved successfully',
       total: matches && matches.length ? matches.length : 0,
-      data: matches,
+      matches,
     });
   });
 }
@@ -51,7 +51,7 @@ export function viewMatch(req, res) {
       res.send(err);
     res.json({
       status: 'Success',
-      data: match,
+      match,
     });
   });
 }
