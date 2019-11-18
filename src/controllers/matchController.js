@@ -60,8 +60,26 @@ export function viewMatch(req, res) {
 export async function endMatch(req, res) {
   let match = await Match.findById(req.params.match_id);
 
-  let winner_id = match.player1_games_won > match.player2_games_won ? match.player1_id : match.player2_id;
-  let player = await Player.findByIdAndUpdate(winner_id, { $inc: { matches_won: 1 } }, { new: true });
+  let winning_player, losing_player;
+  if (match.player1_games_won > match.player2_games_won) {
+    winning_player = 'player1';
+    losing_player = 'player2';
+  } else {
+    winning_player = 'player2';
+    losing_player = 'player1';
+  }
+
+  const winner_id = match[`${winning_player}_id`];
+  const loser_id = match[`${losing_player}_id`];
+
+  let winner = await Player.findByIdAndUpdate(winner_id, { $inc: { matches_won: 1 } }, { new: true });
+  let loser = await Player.findById(loser_id);
+
+  await Match.findByIdAndUpdate(req.params.match_id, {
+    $set: {
+      activity: `${winner.name} beat ${loser.name}: ${match[`${winning_player}_games_won`]}-${match[`${losing_player}_games_won`]}`,
+    },
+  }, { new: true });
 
   return Match.findById(req.params.match_id, function (err, newMatch) {
     if (err)
@@ -69,7 +87,7 @@ export async function endMatch(req, res) {
     res.json({
       status: 'Success',
       message: 'Match completed',
-      winner: player,
+      winner,
       match: newMatch,
     });
   });

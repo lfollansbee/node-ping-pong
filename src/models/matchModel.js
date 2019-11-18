@@ -33,6 +33,9 @@ export const matchSchema = new Schema({
         type: Date,
         default: Date.now,
     },
+    activity: {
+        type: String,
+    },
 });
 
 export const Match = model('Match', matchSchema);

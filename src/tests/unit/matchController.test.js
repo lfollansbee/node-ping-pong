@@ -80,6 +80,9 @@ describe('Match Controller', () => {
 
     const res = await request.patch('/ping-pong/match/5dc34eaa2cc5d6649092c789').send();
 
+    const match = await Match.findById('5dc34eaa2cc5d6649092c789');
+    expect(match.activity).toEqual('PAULO beat PAVAN: 2-1');
+
     const updated_paulo = await Player.findById('5dc34a8fa8eb86605600a0f3');
     const updated_pavan = await Player.findById('5dc34a8fa8eb86605600a0f4');
     expect(updated_paulo.matches_won).toEqual(1);
@@ -94,11 +97,11 @@ describe('Match Controller', () => {
   it('Deletes a match, any games within that match, and removes the match from the players\' matches', async done => {
     const games = await Game.find();
     expect(games.length).toEqual(9);
-    
+
     const matches = await Match.find();
     expect(matches.length).toEqual(3);
 
-    const players = await Player.find({matches: '5dc34eaa2cc5d6649092c789'});
+    const players = await Player.find({ matches: '5dc34eaa2cc5d6649092c789' });
     expect(players.length).toEqual(2);
 
     const winner_ryan = await Player.findById('5dc34a8fa8eb86605600a0f2');
@@ -107,10 +110,10 @@ describe('Match Controller', () => {
     const res = await request.delete('/ping-pong/match/5dc34eaa2cc5d6649092c456').send();
 
     const updated_games = await Game.find();
-    const updated_players = await Player.find({matches: '5dc34eaa2cc5d6649092c456'});
+    const updated_players = await Player.find({ matches: '5dc34eaa2cc5d6649092c456' });
     const updated_matches = await Match.find();
     const updated_ryan = await Player.findById('5dc34a8fa8eb86605600a0f2');
-    
+
     expect(updated_ryan.matches_won).toEqual(0);
     expect(res.body.status).toEqual('Success');
     expect(res.body.message).toEqual('Match deleted');

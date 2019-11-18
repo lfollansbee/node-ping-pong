@@ -12,6 +12,7 @@ export default [
     player1_id: '5dc34a8fa8eb86605600a0f1', //Lucy
     player2_id: '5dc34a8fa8eb86605600a0f2', // Ryan
     date: '2019-11-06T22:52:26.784Z',
+    activity: 'LUCY beat RYAN: 2-1',
     __v: 0,
   },
   {

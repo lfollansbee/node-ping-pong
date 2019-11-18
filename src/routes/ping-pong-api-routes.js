@@ -1,6 +1,7 @@
 import * as playerController from '../controllers/playerController';
 import * as matchController from '../controllers/matchController';
 import * as gameController from '../controllers/gameController';
+import * as activityController from '../controllers/activityController';
 import express from 'express';
 let router = express.Router();
 
@@ -38,5 +39,8 @@ router.route('/game/:game_id')
 
 router.route('/game/:match_id')
   .post(gameController.newGame);
+
+router.route('/activity')
+  .get(activityController.getActivity);
 
 export default router;
