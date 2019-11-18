@@ -13,7 +13,7 @@ describe('Player Controller', () => {
     expect(res.body.status).toEqual('Success');
     expect(res.body.message).toEqual('Players retrieved successfully');
     expect(res.body.total).toEqual(4);
-    expect(res.body.data.length).toEqual(4);
+    expect(res.body.players.length).toEqual(4);
     done();
   });
 
@@ -22,7 +22,7 @@ describe('Player Controller', () => {
 
     const expected = {
       status: 'Success',
-      data: {
+      player: {
         _id: '5dc34a8fa8eb86605600a0f1',
         name: 'LUCY',
         matches: ['5dc34eaa2cc5d6649092c123'],
@@ -38,9 +38,9 @@ describe('Player Controller', () => {
 
     expect(res.body.status).toEqual('Success');
     expect(res.body.message).toEqual('New player created!');
-    expect(res.body.data.name).toEqual('ZIYAD');
-    expect(res.body.data.matches.length).toEqual(0);
-    expect(res.body.data._id).toBeTruthy();
+    expect(res.body.player.name).toEqual('ZIYAD');
+    expect(res.body.player.matches.length).toEqual(0);
+    expect(res.body.player._id).toBeTruthy();
     done();
   });
 

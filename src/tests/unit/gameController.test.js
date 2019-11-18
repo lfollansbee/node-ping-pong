@@ -14,7 +14,7 @@ describe('Game Controller', () => {
     expect(res.body.status).toEqual('Success');
     expect(res.body.message).toEqual('Games retrieved successfully');
     expect(res.body.total).toEqual(9);
-    expect(res.body.data.length).toEqual(9);
+    expect(res.body.games.length).toEqual(9);
     done();
   });
 
@@ -23,7 +23,7 @@ describe('Game Controller', () => {
 
     const expected = {
       status: 'Success',
-      data: {
+      game: {
         player1_score: 21,
         player2_score: 19,
         _id: '5dc34f76499d816612f8dac1',
@@ -85,10 +85,10 @@ describe('Game Controller', () => {
 
     expect(res.body.status).toEqual('Success');
     expect(res.body.message).toEqual('Game updated successfully');
-    expect(res.body.data.game.player1_score).toEqual(21);
-    expect(res.body.data.game.player2_score).toEqual(18);
-    expect(res.body.data.player1_games_won).toEqual(2);
-    expect(res.body.data.player2_games_won).toEqual(1);
+    expect(res.body.game.player1_score).toEqual(21);
+    expect(res.body.game.player2_score).toEqual(18);
+    expect(res.body.player1_games_won).toEqual(2);
+    expect(res.body.player2_games_won).toEqual(1);
 
     done();
   });
@@ -101,10 +101,10 @@ describe('Game Controller', () => {
 
     expect(res.body.status).toEqual('Success');
     expect(res.body.message).toEqual('Game updated successfully');
-    expect(res.body.data.game.player1_score).toEqual(15);
-    expect(res.body.data.game.player2_score).toEqual(21);
-    expect(res.body.data.player1_games_won).toEqual(1);
-    expect(res.body.data.player2_games_won).toEqual(2);
+    expect(res.body.game.player1_score).toEqual(15);
+    expect(res.body.game.player2_score).toEqual(21);
+    expect(res.body.player1_games_won).toEqual(1);
+    expect(res.body.player2_games_won).toEqual(2);
 
     done();
   });
@@ -117,10 +117,10 @@ describe('Game Controller', () => {
 
     expect(res.body.status).toEqual('Success');
     expect(res.body.message).toEqual('Game updated successfully');
-    expect(res.body.data.game.player1_score).toEqual(21);
-    expect(res.body.data.game.player2_score).toEqual(15);
-    expect(res.body.data.player1_games_won).toEqual(2);
-    expect(res.body.data.player2_games_won).toEqual(1);
+    expect(res.body.game.player1_score).toEqual(21);
+    expect(res.body.game.player2_score).toEqual(15);
+    expect(res.body.player1_games_won).toEqual(2);
+    expect(res.body.player2_games_won).toEqual(1);
 
     done();
   });

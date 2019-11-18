@@ -84,6 +84,10 @@ export async function deleteMatch(req, res) {
     { $or: [{ _id: match.player1_id }, { _id: match.player2_id }] },
     { $pull: { matches: req.params.match_id } });
 
+  // Decrement matches_won from players who won the match
+  const winner_id = match.player1_games_won > match.player2_games_won ? match.player1_id : match.player2_id;
+  await Player.findByIdAndUpdate(winner_id, { $inc: { matches_won: -1 } }, { new: true });
+
   await Game.deleteMany({ match_id: req.params.match_id });
 
   return Match.deleteOne({
