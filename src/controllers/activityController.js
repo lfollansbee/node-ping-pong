@@ -42,5 +42,12 @@ export async function getActivityByPlayer(req, res) {
 }
 
 const getActivityFromMatches = (matchesList) => {
-  return matchesList.filter(match => match.activity !== undefined).map(matchWithAct => matchWithAct.activity);
+  return matchesList
+    .filter(match => match.activity !== undefined)
+    .map(matchWithActivity => {
+      return {
+        activity: matchWithActivity.activity,
+        date: matchWithActivity.date,
+      }
+    });
 };

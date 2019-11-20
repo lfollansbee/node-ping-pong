@@ -12,7 +12,12 @@ describe('Activity Controller', () => {
     expect(res.body.status).toEqual('Success');
     expect(res.body.message).toEqual('Activity retrieved successfully');
     expect(res.body.activity.length).toEqual(1);
-    expect(res.body.activity).toMatchObject(['LUCY beat RYAN: 2-1']);
+    expect(res.body.activity).toMatchObject([
+      {
+        activity: 'LUCY beat RYAN: 2-1',
+        date: '2019-11-06T22:52:26.784Z',
+      },
+    ]);
     done();
   });
 
@@ -22,7 +27,12 @@ describe('Activity Controller', () => {
     expect(res.body.status).toEqual('Success');
     expect(res.body.message).toEqual('Player activity retrieved successfully');
     expect(res.body.activity.length).toEqual(1);
-    expect(res.body.activity).toEqual(['LUCY beat RYAN: 2-1']);
+    expect(res.body.activity).toEqual([
+      {
+        activity: 'LUCY beat RYAN: 2-1',
+        date: '2019-11-06T22:52:26.784Z',
+      },
+    ]);
     done();
   });
 });
