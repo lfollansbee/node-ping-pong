@@ -16,6 +16,9 @@ export const playerSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Match',
     }],
+    last_played: {
+        type: Date,
+    },
 });
 
 export const Player = model('Player', playerSchema);

@@ -76,7 +76,9 @@ describe('Match Controller', () => {
     const paulo = await Player.findById('5dc34a8fa8eb86605600a0f3');
     const pavan = await Player.findById('5dc34a8fa8eb86605600a0f4');
     expect(paulo.matches_won).toEqual(0);
+    expect(paulo.last_played).toEqual(undefined);
     expect(pavan.matches_won).toEqual(0);
+    expect(pavan.last_played).toEqual(undefined);
 
     const res = await request.patch('/ping-pong/match/5dc34eaa2cc5d6649092c789').send();
 
@@ -86,7 +88,9 @@ describe('Match Controller', () => {
     const updated_paulo = await Player.findById('5dc34a8fa8eb86605600a0f3');
     const updated_pavan = await Player.findById('5dc34a8fa8eb86605600a0f4');
     expect(updated_paulo.matches_won).toEqual(1);
+    expect(updated_paulo.last_played).toEqual(new Date('2019-11-06T22:30:26.784Z'));
     expect(updated_pavan.matches_won).toEqual(0);
+    expect(updated_pavan.last_played).toEqual(new Date('2019-11-06T22:30:26.784Z'));
 
     expect(res.body.status).toEqual('Success');
     expect(res.body.message).toEqual('Match completed');

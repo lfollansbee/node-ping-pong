@@ -69,11 +69,12 @@ export async function endMatch(req, res) {
     losing_player = 'player1';
   }
 
+  const date = match.date;
   const winner_id = match[`${winning_player}_id`];
   const loser_id = match[`${losing_player}_id`];
 
-  let winner = await Player.findByIdAndUpdate(winner_id, { $inc: { matches_won: 1 } }, { new: true });
-  let loser = await Player.findById(loser_id);
+  let winner = await Player.findByIdAndUpdate(winner_id, { $inc: { matches_won: 1 }, $set: { last_played: date } }, { new: true });
+  let loser = await Player.findByIdAndUpdate(loser_id, { $set: { last_played: date } }, { new: true });
 
   await Match.findByIdAndUpdate(req.params.match_id, {
     $set: {
