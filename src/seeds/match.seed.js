@@ -27,7 +27,8 @@ export default [
     _id: '5dc34eaa2cc5d6649092c456',
     player1_id: '5dc34a8fa8eb86605600a0f3', // Paulo
     player2_id: '5dc34a8fa8eb86605600a0f2', // Ryan
-    date: '2019-11-06T22:45:26.784Z',
+    activity: 'RYAN beat PAULO: 2-1',
+    date: '2019-11-07T22:45:26.784Z',
     __v: 0,
   },
   {

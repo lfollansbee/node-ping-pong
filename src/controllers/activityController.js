@@ -1,5 +1,4 @@
 import { Match } from '../models/matchModel';
-import { Player } from '../models/playerModel';
 
 // READ
 export async function getActivity(req, res) {
@@ -22,17 +21,16 @@ export const getAllActivity = (req, res) => {
       message: 'Activity retrieved successfully',
       activity: getActivityFromMatches(matches),
     });
-  });
+  }).sort({ date: -1 });
 };
 
 export async function getActivityByPlayer(req, res) {
-  const player = await Player.findById(req.query.player_id);
-
-  let matches = [];
-  for (let match_id of player.matches) {
-    let match = await Match.findById(match_id);
-    matches.push(match);
-  }
+  const matches = await Match.find({
+    $or: [
+      { player1_id: req.query.player_id },
+      { player2_id: req.query.player_id },
+    ]
+  }).sort({ date: -1 });
 
   return res.json({
     status: 'Success',
@@ -46,8 +44,8 @@ const getActivityFromMatches = (matchesList) => {
     .filter(match => match.activity !== undefined)
     .map(matchWithActivity => {
       return {
-        activity: matchWithActivity.activity,
+        result: matchWithActivity.activity,
         date: matchWithActivity.date,
-      }
+      };
     });
 };
