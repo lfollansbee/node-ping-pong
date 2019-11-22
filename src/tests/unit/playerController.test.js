@@ -7,13 +7,25 @@ const request = supertest(app);
 setupDB('player-testing');
 
 describe('Player Controller', () => {
-  it('Gets all the players', async done => {
+  it('Gets all the players, sorted by default (matches_won)', async done => {
     const res = await request.get('/ping-pong/players').send();
 
     expect(res.body.status).toEqual('Success');
     expect(res.body.message).toEqual('Players retrieved successfully');
     expect(res.body.total).toEqual(4);
     expect(res.body.players.length).toEqual(4);
+    expect(res.body.players[0].name).toEqual('LUCY');
+    done();
+  });
+
+  it('Returns all the players sorted by name', async done => {
+    const res = await request.get('/ping-pong/players?sortField=name').send();
+
+    expect(res.body.status).toEqual('Success');
+    expect(res.body.message).toEqual('Players retrieved successfully');
+    expect(res.body.total).toEqual(4);
+    expect(res.body.players.length).toEqual(4);
+    expect(res.body.players[3].name).toEqual('RYAN');
     done();
   });
 

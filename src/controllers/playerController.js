@@ -18,6 +18,13 @@ export const newPlayer = (req, res) => {
 
 // READ
 export const viewPlayers = (req, res) => {
+  let sortQuery;
+  if (req.query.sortField && req.query.sortField === 'name') {
+    sortQuery = {name: 1};
+  } else {
+    sortQuery = {matches_won: -1};
+  }
+  
   Player.find(function (err, players) {
     if (err) {
       res.json({
@@ -32,7 +39,7 @@ export const viewPlayers = (req, res) => {
       total: players && players.length ? players.length : 0,
       players,
     });
-  }).sort({matches_won: -1});
+  }).sort(sortQuery);
 };
 
 export const viewPlayer = (req, res) => {
