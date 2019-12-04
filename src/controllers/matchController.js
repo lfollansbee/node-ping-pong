@@ -1,6 +1,7 @@
 import { Player } from '../models/playerModel';
 import { Match } from '../models/matchModel';
 import { Game } from '../models/gameModel';
+import { notFoundError } from '../utils/errorHandling';
 
 // CREATE
 export async function newMatch(req, res) {
@@ -30,12 +31,8 @@ export async function newMatch(req, res) {
 export function viewMatches(req, res) {
   Match.find(function (err, matches) {
     if (err) {
-      res.json({
-        status: 'error',
-        message: err,
-      });
+      return notFoundError(res, err);
     }
-
     res.json({
       status: 'Success',
       message: 'Matches retrieved successfully',
@@ -47,8 +44,9 @@ export function viewMatches(req, res) {
 
 export function viewMatch(req, res) {
   Match.findById(req.params.match_id, function (err, match) {
-    if (err)
-      res.send(err);
+    if (err) {
+      return notFoundError(res, err);
+    }
     res.json({
       status: 'Success',
       match,
@@ -58,7 +56,12 @@ export function viewMatch(req, res) {
 
 // UPDATE
 export async function endMatch(req, res) {
-  let match = await Match.findById(req.params.match_id);
+  let match;
+  try {
+    match = await Match.findById(req.params.match_id);
+  } catch (err) {
+    return notFoundError(res, err);
+  }
 
   if (!match.games.length) {
     return res.json({

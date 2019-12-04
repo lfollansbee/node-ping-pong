@@ -45,6 +45,13 @@ describe('Match Controller', () => {
     done();
   });
 
+  it('Gets a single match: returns 404 if match is not found', async done => {
+    const res = await request.get('/ping-pong/match/no_id').send();
+
+    expect(res.status).toEqual(404);
+    done();
+  });
+
   it('Creates a new match, adding its id to the players', async done => {
     const lucy = await Player.findById('5dc34a8fa8eb86605600a0f1');
     const paulo = await Player.findById('5dc34a8fa8eb86605600a0f3');
