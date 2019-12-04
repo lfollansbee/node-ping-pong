@@ -6,18 +6,22 @@ export const playerSchema = new Schema({
         require: 'Please enter a name',
         uppercase: true,
     },
-    matches_won: { type: Number, require: true, default: 0, min: 0 },
-    // matches_lost: Number,
-    // consecutive_wins: Number,
-    // consecutive_losses: Number,
-    // games_won: Number,
-    // games_lost: Number,
+    matches_won: { 
+        type: Number, 
+        require: true, 
+        default: 0, 
+        min: 0,
+    },
     matches: [{
         type: Schema.Types.ObjectId,
         ref: 'Match',
     }],
     last_played: {
         type: Date,
+    },
+    active: {
+        type: Boolean,
+        default: true,
     },
 });
 

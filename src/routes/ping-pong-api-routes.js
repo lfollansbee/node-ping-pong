@@ -18,6 +18,7 @@ router.route('/players')
 
 router.route('/player/:player_id')
   .get(playerController.viewPlayer)
+  .patch(playerController.deactivatePlayer)
   .delete(playerController.deletePlayer);
 
 router.route('/matches')

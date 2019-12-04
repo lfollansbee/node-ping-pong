@@ -2,7 +2,7 @@ import { Player } from '../models/playerModel';
 
 // CREATE
 export const newPlayer = (req, res) => {
-  let player = new Player({name: req.body.name});
+  let player = new Player({ name: req.body.name });
   // save the player and check for errors
   player.save((err) => {
     if (err)
@@ -20,11 +20,11 @@ export const newPlayer = (req, res) => {
 export const viewPlayers = (req, res) => {
   let sortQuery;
   if (req.query.sortField && req.query.sortField === 'name') {
-    sortQuery = {name: 1};
+    sortQuery = { name: 1 };
   } else {
-    sortQuery = {matches_won: -1};
+    sortQuery = { matches_won: -1 };
   }
-  
+
   Player.find(function (err, players) {
     if (err) {
       res.json({
@@ -44,6 +44,17 @@ export const viewPlayers = (req, res) => {
 
 export const viewPlayer = (req, res) => {
   Player.findById(req.params.player_id, function (err, player) {
+    if (err)
+      res.send(err);
+    res.json({
+      status: 'Success',
+      player,
+    });
+  });
+};
+
+export const deactivatePlayer = (req, res) => {
+  Player.findByIdAndUpdate(req.params.player_id, { $set: { active: false } }, { new: true }, function (err, player) {
     if (err)
       res.send(err);
     res.json({

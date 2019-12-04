@@ -1,6 +1,7 @@
 export default [
   {
     name: 'LUCY',
+    active: true,
     _id: '5dc34a8fa8eb86605600a0f1',
     matches_won: 1,
     matches: [
@@ -10,6 +11,7 @@ export default [
   },
   {
     name: 'RYAN',
+    active: true,
     _id: '5dc34a8fa8eb86605600a0f2',
     matches_won: 1,
     matches: [
@@ -20,6 +22,7 @@ export default [
   },
   {
     name: 'PAULO',
+    active: true,
     _id: '5dc34a8fa8eb86605600a0f3',
     matches_won: 0,
     matches: [
@@ -30,6 +33,7 @@ export default [
   },
   {
     name: 'PAVAN',
+    active: true,
     _id: '5dc34a8fa8eb86605600a0f4',
     matches_won: 0,
     matches: [

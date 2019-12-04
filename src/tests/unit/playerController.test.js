@@ -38,6 +38,7 @@ describe('Player Controller', () => {
         _id: '5dc34a8fa8eb86605600a0f1',
         name: 'LUCY',
         matches: ['5dc34eaa2cc5d6649092c123'],
+        active: true,
       },
     };
 
@@ -53,6 +54,23 @@ describe('Player Controller', () => {
     expect(res.body.player.name).toEqual('ZIYAD');
     expect(res.body.player.matches.length).toEqual(0);
     expect(res.body.player._id).toBeTruthy();
+    done();
+  });
+
+  it('Deactivates a player', async done => {
+    const res = await request.patch('/ping-pong/player/5dc34a8fa8eb86605600a0f1').send();
+
+    const expected = {
+      status: 'Success',
+      player: {
+        _id: '5dc34a8fa8eb86605600a0f1',
+        name: 'LUCY',
+        matches: ['5dc34eaa2cc5d6649092c123'],
+        active: false,
+      },
+    };
+
+    expect(res.body).toMatchObject(expected);
     done();
   });
 
