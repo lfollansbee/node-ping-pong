@@ -16,10 +16,12 @@ describe('Activity Controller', () => {
       {
         result: 'RYAN beat PAULO: 2-1',
         date: '2019-11-07T22:45:26.784Z',
+        match_id: '5dc34eaa2cc5d6649092c456',
       },
       {
         result: 'LUCY beat RYAN: 2-1',
         date: '2019-11-06T22:52:26.784Z',
+        match_id: '5dc34eaa2cc5d6649092c123',
       },
     ]);
     done();
@@ -35,6 +37,7 @@ describe('Activity Controller', () => {
       {
         result: 'LUCY beat RYAN: 2-1',
         date: '2019-11-06T22:52:26.784Z',
+        match_id: '5dc34eaa2cc5d6649092c123',
       },
     ]);
     done();

@@ -44,6 +44,7 @@ const getActivityFromMatches = (matchesList) => {
     .filter(match => match.activity !== undefined)
     .map(matchWithActivity => {
       return {
+        match_id: matchWithActivity._id,
         result: matchWithActivity.activity,
         date: matchWithActivity.date,
       };
