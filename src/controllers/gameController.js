@@ -1,5 +1,6 @@
 import { Match } from '../models/matchModel';
 import { Game } from '../models/gameModel';
+import { notFoundError } from '../utils/errorHandling';
 
 // CREATE
 export async function newGame(req, res) {
@@ -49,7 +50,7 @@ export function viewGames(req, res) {
 export function viewGame(req, res) {
   Game.findById(req.params.game_id, function (err, game) {
     if (err)
-      res.send(err);
+      return notFoundError(res, err, 'Game not found');
     res.json({
       status: 'Success',
       game,
@@ -63,11 +64,7 @@ export async function editGame(req, res) {
   try {
     game = await Game.findById(req.params.game_id);
   } catch (err) {
-    return res.json({
-      status: 404,
-      message: `No Game found with game_id: ${req.params.game_id}`,
-      error: err,
-    });
+    return notFoundError(res, err, `No Game found with game_id: ${req.params.game_id}`);
   }
 
   let match_id = game.match_id;

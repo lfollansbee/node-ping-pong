@@ -1,4 +1,5 @@
 import { Player } from '../models/playerModel';
+import { notFoundError } from '../utils/errorHandling';
 
 // CREATE
 export const newPlayer = (req, res) => {
@@ -32,7 +33,6 @@ export const viewPlayers = (req, res) => {
         message: err,
       });
     }
-
     res.json({
       status: 'Success',
       message: 'Players retrieved successfully',
@@ -45,7 +45,7 @@ export const viewPlayers = (req, res) => {
 export const viewPlayer = (req, res) => {
   Player.findById(req.params.player_id, function (err, player) {
     if (err)
-      res.send(err);
+      return notFoundError(res, err, 'Player not found');
     res.json({
       status: 'Success',
       player,
@@ -56,7 +56,7 @@ export const viewPlayer = (req, res) => {
 export const deactivatePlayer = (req, res) => {
   Player.findByIdAndUpdate(req.params.player_id, { $set: { active: false } }, { new: true }, function (err, player) {
     if (err)
-      res.send(err);
+      return notFoundError(res, err, 'Player not found');
     res.json({
       status: 'Success',
       player,

@@ -128,7 +128,7 @@ describe('Game Controller', () => {
   it('Edit a game: returns error if game is not found', async done => {
     const res = await request.patch('/ping-pong/game/1dc11f11111a11111f1lbf1').send();
 
-    expect(res.body.status).toEqual(404);
+    expect(res.status).toEqual(404);
     expect(res.body.message).toEqual('No Game found with game_id: 1dc11f11111a11111f1lbf1');
     done();
   });
