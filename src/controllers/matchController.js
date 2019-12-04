@@ -60,6 +60,13 @@ export function viewMatch(req, res) {
 export async function endMatch(req, res) {
   let match = await Match.findById(req.params.match_id);
 
+  if (!match.games.length) {
+    return res.json({
+      status: 405,
+      message: 'This match has no games.  Cannot submit a match without a game score.',
+    });
+  }
+
   let winning_player, losing_player;
   if (match.player1_games_won > match.player2_games_won) {
     winning_player = 'player1';

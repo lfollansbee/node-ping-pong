@@ -46,4 +46,15 @@ export default [
     date: '2019-11-06T22:30:26.784Z',
     __v: 0,
   },
+  {
+    player1_games_won: 0,
+    player2_games_won: 0,
+    best_of: 3,
+    games: [],
+    _id: '5dc34eaa2cc5d6649092c000',
+    player1_id: '5dc34a8fa8eb86605600a0f4', // Pavan
+    player2_id: '5dc34a8fa8eb86605600a0f3', // Paulo
+    date: '2019-11-06T22:30:26.784Z',
+    __v: 0,
+  },
 ];
