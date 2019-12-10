@@ -17,6 +17,10 @@ export const gameSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Match',
   },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 export const Game = model('Game', gameSchema);

@@ -17,11 +17,41 @@ describe('Activity Controller', () => {
         result: 'RYAN beat PAULO: 2-1',
         date: '2019-11-07T22:45:26.784Z',
         match_id: '5dc34eaa2cc5d6649092c456',
+        winner_id: '5dc34a8fa8eb86605600a0f2',
+        game_scores: [
+          {
+            match_winner: 21,
+            match_loser: 15,
+          },
+          {
+            match_winner: 19,
+            match_loser: 21,
+          },
+          {
+            match_winner: 21,
+            match_loser: 16,
+          },
+        ],
       },
       {
         result: 'LUCY beat RYAN: 2-1',
         date: '2019-11-06T22:52:26.784Z',
         match_id: '5dc34eaa2cc5d6649092c123',
+        winner_id: '5dc34a8fa8eb86605600a0f1',
+        game_scores: [
+          {
+            match_winner: 21,
+            match_loser: 19,
+          },
+          {
+            match_winner: 17,
+            match_loser: 21,
+          },
+          {
+            match_winner: 25,
+            match_loser: 23,
+          },
+        ],
       },
     ]);
     done();
@@ -38,6 +68,21 @@ describe('Activity Controller', () => {
         result: 'LUCY beat RYAN: 2-1',
         date: '2019-11-06T22:52:26.784Z',
         match_id: '5dc34eaa2cc5d6649092c123',
+        winner_id: '5dc34a8fa8eb86605600a0f1',
+        game_scores: [
+          {
+            match_winner: 21,
+            match_loser: 19,
+          },
+          {
+            match_winner: 17,
+            match_loser: 21,
+          },
+          {
+            match_winner: 25,
+            match_loser: 23,
+          },
+        ],
       },
     ]);
     done();

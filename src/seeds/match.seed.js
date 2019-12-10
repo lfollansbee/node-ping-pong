@@ -43,7 +43,7 @@ export default [
     _id: '5dc34eaa2cc5d6649092c789',
     player1_id: '5dc34a8fa8eb86605600a0f3', // Paulo
     player2_id: '5dc34a8fa8eb86605600a0f4', // Pavan
-    date: '2019-11-06T22:30:26.784Z',
+    date: '2019-11-08T22:30:26.784Z',
     __v: 0,
   },
   {

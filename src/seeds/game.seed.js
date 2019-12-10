@@ -4,6 +4,7 @@ export default [
     player2_score: 19,
     _id: '5dc34f76499d816612f8dac1',
     match_id: '5dc34eaa2cc5d6649092c123',
+    date: '2019-11-07T22:30:00.784Z',
     __v: 0,
   },
   {
@@ -11,6 +12,7 @@ export default [
     player2_score: 21,
     _id: '5dc34f76499d816612f8dac2',
     match_id: '5dc34eaa2cc5d6649092c123',
+    date: '2019-11-07T22:37:00.784Z',
     __v: 0,
   },
   {
@@ -18,6 +20,7 @@ export default [
     player2_score: 23,
     _id: '5dc34f76499d816612f8dac3',
     match_id: '5dc34eaa2cc5d6649092c123',
+    date: '2019-11-07T22:45:00.784Z',
     __v: 0,
   },
   {
@@ -25,6 +28,7 @@ export default [
     player2_score: 21,
     _id: '5dc34f76499d816612f8daa1',
     match_id: '5dc34eaa2cc5d6649092c456',
+    date: '2019-11-07T22:21:26.784Z',
     __v: 0,
   },
   {
@@ -32,6 +36,7 @@ export default [
     player2_score: 19,
     _id: '5dc34f76499d816612f8daa2',
     match_id: '5dc34eaa2cc5d6649092c456',
+    date: '2019-11-07T22:28:26.784Z',
     __v: 0,
   },
   {
@@ -39,6 +44,7 @@ export default [
     player2_score: 21,
     _id: '5dc34f76499d816612f8daa3',
     match_id: '5dc34eaa2cc5d6649092c456',
+    date: '2019-11-07T22:36:26.784Z',
     __v: 0,
   },
   {
@@ -46,6 +52,7 @@ export default [
     player2_score: 21,
     _id: '5dc34f76499d816612f8dab1',
     match_id: '5dc34eaa2cc5d6649092c789',
+    date: '2019-11-08T22:45:32.784Z',
     __v: 0,
   },
   {
@@ -53,6 +60,7 @@ export default [
     player2_score: 19,
     _id: '5dc34f76499d816612f8dab2',
     match_id: '5dc34eaa2cc5d6649092c789',
+    date: '2019-11-08T22:45:40.784Z',
     __v: 0,
   },
   {
@@ -60,6 +68,7 @@ export default [
     player2_score: 15,
     _id: '5dc34f76499d816612f8dab3',
     match_id: '5dc34eaa2cc5d6649092c789',
+    date: '2019-11-08T22:45:47.784Z',
     __v: 0,
   },
 ];
