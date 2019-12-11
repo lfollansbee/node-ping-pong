@@ -18,6 +18,16 @@ describe('Game Controller', () => {
     done();
   });
 
+  it('Gets all the games for a match', async done => {
+    const res = await request.get('/ping-pong/games/5dc34eaa2cc5d6649092c123').send();
+
+    expect(res.body.status).toEqual('Success');
+    expect(res.body.message).toEqual('Games retrieved successfully');
+    expect(res.body.total).toEqual(3);
+    expect(res.body.games.length).toEqual(3);
+    done();
+  });
+
   it('Gets a single game', async done => {
     const res = await request.get('/ping-pong/game/5dc34f76499d816612f8dac1').send();
 

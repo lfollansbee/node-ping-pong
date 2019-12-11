@@ -33,6 +33,9 @@ router.route('/match/:match_id')
 router.route('/games')
   .get(gameController.viewGames);
 
+router.route('/games/:match_id')
+  .get(gameController.viewGamesByMatch);
+
 router.route('/game/:game_id')
   .get(gameController.viewGame)
   .patch(gameController.editGame)

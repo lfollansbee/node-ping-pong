@@ -46,6 +46,23 @@ export function viewGames(req, res) {
     });
   });
 }
+export function viewGamesByMatch(req, res) {
+  Game.find({ match_id: req.params.match_id }, function (err, games) {
+    if (err) {
+      res.json({
+        status: 'Error',
+        message: err,
+      });
+    }
+
+    res.json({
+      status: 'Success',
+      message: 'Games retrieved successfully',
+      total: games.length,
+      games,
+    });
+  });
+}
 
 export function viewGame(req, res) {
   Game.findById(req.params.game_id, function (err, game) {
