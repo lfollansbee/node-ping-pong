@@ -125,7 +125,7 @@ describe('Match Controller', () => {
     expect(updated_pavan.matches_won).toEqual(0);
     expect(updated_pavan.last_played).toEqual(undefined);
 
-    expect(res.body.status).toEqual(405);
+    expect(res.status).toEqual(405);
     expect(res.body.message).toEqual('This match has no games.  Cannot submit a match without a game score.');
 
     done();

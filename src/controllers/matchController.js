@@ -64,8 +64,8 @@ export async function endMatch(req, res) {
   }
 
   if (!match.games.length) {
-    return res.json({
-      status: 405,
+    return res.status(405).json({
+      status: 'Method not allowed',
       message: 'This match has no games.  Cannot submit a match without a game score.',
     });
   }
